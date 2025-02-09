@@ -19,9 +19,95 @@ pipx ensurepath
 pipx install pipenv
 ```
 
+
+## **📌 2. Configure Environment Variables (\`.env\` Setup)**
+To avoid exposing sensitive credentials in your code, use an \`.env\` file.
+
+### **1️⃣ Install \`python-dotenv\` (if not already installed)**
+\`\`\`sh
+pipenv install python-dotenv
+\`\`\`
+
+### **2️⃣ Create a \`.env\` file**
+Run:
+\`\`\`sh
+touch .env
+\`\`\`
+Then, open it in a text editor and add:
+\`\`\`ini
+SECRET_KEY='your-very-secret-key'
+DEBUG=False
+
+DATABASE_NAME=littlelemon
+DATABASE_USER=django_user
+DATABASE_PASSWORD=your-secure-password
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+\`\`\`
+Replace \`'your-very-secret-key'\` and \`'your-secure-password'\` with actual values.
+
+### **3️⃣ Create a \`.env.example\` File for Reference**
+To help others set up their environment, create an \`.env.example\` file:
+\`\`\`sh
+touch .env.example
+\`\`\`
+Add:
+\`\`\`ini
+SECRET_KEY='your-secret-key-placeholder'
+DEBUG=False
+
+DATABASE_NAME=littlelemon
+DATABASE_USER=your-db-user
+DATABASE_PASSWORD=your-db-password-placeholder
+DATABASE_HOST=localhost
+DATABASE_PORT=3306
+\`\`\`
+Commit **\`.env.example\`** to Git, but **do not commit** the actual \`.env\` file.
+
+### **4️⃣ Update \`.gitignore\` to Exclude \`.env\`**
+To prevent \`.env\` from being tracked by Git, add this to \`.gitignore\`:
+\`\`\`sh
+# Ignore environment variables file
+.env
+\`\`\`
+
+### **5️⃣ Update \`settings.py\` to Load Environment Variables**
+Modify \`settings.py\` to read values from \`.env\`:
+\`\`\`python
+import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load environment variables
+load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv("DATABASE_NAME"),
+        'USER': os.getenv("DATABASE_USER"),
+        'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+        'HOST': os.getenv("DATABASE_HOST", "localhost"),
+        'PORT': os.getenv("DATABASE_PORT", "3306"),
+    }
+}
+
+if not SECRET_KEY:
+    raise ValueError("❌ SECRET_KEY is missing! Set it in the .env file.")
+\`\`\`
+
 ---
 
-## **📌 2. Set Up MySQL Database**
+Now your project is securely configured with environment variables! 🚀
+EOF
+---
+
+## **📌 3. Set Up MySQL Database**
 1️⃣ **Start MySQL Server** (if not already running):
 ```sh
 brew services start mysql
@@ -43,7 +129,7 @@ Replace `'password'` with your desired password.
 
 ---
 
-## **📌 3. Set Up the Django Project**
+## **📌 4. Set Up the Django Project**
 1️⃣ **Clone or extract the project**:
 If using **Git**, run:
 ```sh
@@ -67,7 +153,7 @@ pipenv install
 
 ---
 
-## **📌 4. Configure Database Connection**
+## **📌 5. Configure Database Connection**
 Open the **`settings.py`** file (`littlelemon/settings.py`) and ensure the `DATABASES` section matches your MySQL setup:
 ```python
 DATABASES = {
@@ -85,7 +171,7 @@ Replace `'password'` with the actual MySQL password you set earlier.
 
 ---
 
-## **📌 5. Apply Migrations and Create Superuser**
+## **📌 6. Apply Migrations and Create Superuser**
 Run database migrations:
 ```sh
 python manage.py makemigrations
@@ -100,7 +186,7 @@ Enter your **username, email, and password** when prompted.
 
 ---
 
-## **📌 6. Run the Django Server**
+## **📌 7. Run the Django Server**
 Start the development server:
 ```sh
 python manage.py runserver

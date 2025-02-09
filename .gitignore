@@ -14,7 +14,6 @@ Pipfile.lock
 *.sqlite3
 
 # Ignore Django secret key
-*.env
 .env
 config/settings/local.py
 
