@@ -15,6 +15,7 @@ Pipfile.lock
 
 # Ignore Django secret key
 *.env
+.env
 config/settings/local.py
 
 # Ignore log files
