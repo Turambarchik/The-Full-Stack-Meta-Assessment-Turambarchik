@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section>
+  <article>
+    <h1>All Reservations</h1>
+    <div class="row">
+      <div class="column">
+        {% for booking in bookings.bookings %}
+        <p id="bookings">
+          <span> {{ booking.first_name }} </span>
+          <span> {{ booking.reservation_date }} </span>
+          <span> {{ booking.reservation_slot }} </span>
+        </p>
+        {% endfor %}
+      </div>
+    </div>
+  </article>
+</section>
+<script>
+ const bookings = JSON.parse("{{ bookings|safe }}").bookings || [];
+  const pretty_json = JSON.stringify(bookings, null, 2);
+  document.getElementById("bookings").innerHTML = pretty_json;
+</script>
+{% endblock %}

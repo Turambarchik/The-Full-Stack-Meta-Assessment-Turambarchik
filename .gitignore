@@ -1,0 +1,37 @@
+# Ignore Python compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environments
+venv/
+.env/
+.venv/
+Pipfile.lock
+
+# Ignore database files
+*.sqlite3
+
+# Ignore Django secret key
+*.env
+config/settings/local.py
+
+# Ignore log files
+*.log
+
+# Ignore media and static files
+/media/
+/static/
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore migrations (optional, if you don't want to track them)
+restaurant/migrations/__pycache__/
+restaurant/migrations/*.pyc
+restaurant/migrations/*.pyo
+restaurant/migrations/*.pyd

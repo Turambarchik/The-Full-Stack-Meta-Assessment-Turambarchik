@@ -1,0 +1,162 @@
+body {
+    font-family: 'Karla', sans-serif;
+    margin: 3rem 5%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Markazi Text', serif;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #333333;
+    margin: 1rem 0;
+}
+
+p, ul {
+    font-size: 1.25rem;
+}
+
+a {
+    color: #EE9972;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+header img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+}
+
+nav {
+    background-color: #495E57;
+    margin: 1rem 0;
+}
+
+nav ul {
+    list-style: none;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0.5rem;
+}
+
+nav ul a {
+    color: #EDEFEE;
+    text-decoration: none;
+}
+
+nav ul a:hover {
+    text-decoration: underline;
+}
+
+section {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+article {
+    flex: 1;
+}
+
+article img {
+    max-width: 100%;
+}
+
+article ul {
+    list-style: none;
+}
+
+main article {
+    border: 1px solid #EDEFEE;
+    padding: 1rem;
+}
+
+figure {
+    margin: 0;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+
+input, select {
+    width: 80%;
+    display: block;
+    padding: 0.5rem 1rem;
+    line-height: 1.5rem;
+    box-sizing: border-box;
+}
+
+#button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #495E57;
+    background-color: #495E57;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 1.25rem;
+    color: #fff;
+}
+
+footer {
+    background-color: #EDEFEE;
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+footer img {
+    max-width: 50%;
+}
+
+footer p {
+    border-top: 1px solid #333333;
+    text-align: right;
+    padding-top: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.column {
+    flex-basis: 50%;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 800px) {
+    section {
+        flex-direction: column;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    input, #button {
+        width: 100%;
+    }
+}
